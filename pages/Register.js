@@ -1,38 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoLogoGoogle, IoLogoFacebook } from "react-icons/io";
 import Link from "next/link";
 import Logo from "../components/Logo";
-import { auth } from "@/firebase/firebase";
+import { auth, db, uid } from "@/firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { validateConfig } from "next/dist/server/config-shared";
+import { useAuth } from "@/context/authContext";
+import { useRouter } from "next/router";
+import { doc, setDoc } from "firebase/firestore";
+import { profileColors } from "@/utils/constants";
+import Loader from "@/components/Loader";
 
 const provider = new GoogleAuthProvider();
 
 const Register = () => {
-     const [username,setUsername] = useState(null);
-     const [email,setEmail] = useState(null);
-     const [password,setPassword] = useState(null);
+     const router = useRouter();
+     const { currentUser, isLoading } = useAuth();
+     const colorIndex = Math.floor(Math.random() * profileColors.length);
 
-     const handleSignup = async () => {
-          if(!email || !username || !password){
-               return
+     useEffect(() => {
+          if (!isLoading && currentUser) {
+               router.push("/Dashboard");
           }
-          try{
-               const user = await createUserWithEmailAndPassword(auth,email,password);
-               await updateProfile(auth.currentUser,{
-                    displayName: username,
+     }, [currentUser, isLoading]);
+
+     const handleSubmit = async (e) => {
+          e.preventDefault();
+          const displayName = e.target[0].value;
+          const email = e.target[1].value;
+          const password = e.target[2].value;
+          if (!email || !password || !displayName) {
+               return;
+          }
+          try {
+               const {user} = await createUserWithEmailAndPassword(auth, email, password);
+               
+               await setDoc(doc(db, "users", user.uid),{
+                    uid: user.uid,
+                    displayName,
+                    email,
+                    color: profileColors[colorIndex],
                })
-               console.log(user);
-          }catch(err){
-               console.log("An error occured", err)
+               
+               await setDoc(doc(db, "userChats", user.uid ),{})
+               
+               await updateProfile(user, {
+                    displayName,
+               })
+               
+               console.log("SignUp successful:", email);
+
+               router.push("/Dashboard")
+
+          } catch (err) {
+               console.log(err);
           }
-     }
+     };
 
      const signInWithGoogle = async () => {
-          const user = await signInWithPopup(auth,provider);
-          console.log(user)
-     }
-     return (
+          const {user} = await signInWithPopup(auth, provider);
+          console.log(user);
+
+          await setDoc(doc(db, "users", user.uid),{
+               uid: user.uid,
+               displayName: user.displayName,
+               email: user.email,
+               color: profileColors[colorIndex],
+          })
+          
+          await setDoc(doc(db, "userChats", user.uid ),{})
+          
+          await updateProfile(user, {
+               displayName: user.displayName,
+          })
+     };
+
+     return isLoading || (!isLoading && currentUser) ? (
+          <Loader />
+     ) : (
           <div className="h-[100vh] flex justify-center items-center bg-c1">
                <div className="flex items-center flex-col">
                     <Logo />
@@ -43,7 +87,10 @@ const Register = () => {
 
                     <div className="flex items-center gap-2 w-full mt-10 mb-5">
                          <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-1/2 h-14 rounded-md cursor-pointer p-[1px]">
-                              <div onClick={signInWithGoogle} className="flex items-center justify-center gap-3 text-white font-semibold bg-c1 w-full h-full rounded-md">
+                              <div
+                                   onClick={signInWithGoogle}
+                                   className="flex items-center justify-center gap-3 text-white font-semibold bg-c1 w-full h-full rounded-md"
+                              >
                                    <IoLogoGoogle size={24} />
                                    <span>Signup with Google</span>
                               </div>
@@ -62,14 +109,16 @@ const Register = () => {
                          <span className="w-5 h-[1px] bg-c3"></span>
                     </div>
 
-                    <form onSubmit={(e)=> e.preventDefault()} className="flex flex-col items-center gap-3 w-[500px] mt-5">
+                    <form
+                         onSubmit={handleSubmit}
+                         className="flex flex-col items-center gap-3 w-[500px] mt-5"
+                    >
                          <input
                               type="text"
                               placeholder="Name"
                               className="w-full h-14 bg-c5 rounded-xl outline-none border-none px-5 text-c3"
                               autoComplete="off"
                               required
-                              onChange={(e)=>setUsername(e.target.value)}
                          />
                          <input
                               type="email"
@@ -77,7 +126,6 @@ const Register = () => {
                               className="w-full h-14 bg-c5 rounded-xl outline-none border-none px-5 text-c3"
                               autoComplete="off"
                               required
-                              onChange={(e)=>setEmail(e.target.value)}
                          />
                          <input
                               type="password"
@@ -85,9 +133,10 @@ const Register = () => {
                               className="w-full h-14 bg-c5 rounded-xl outline-none border-none px-5 text-c3"
                               autoComplete="off"
                               required
-                              onChange={(e)=>setPassword(e.target.value)}
                          />
-                         <button onClick={handleSignup} className="mt-4 w-full h-14 rounded-xl outline-none text-base  font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                         <button
+                              className="mt-4 w-full h-14 rounded-xl outline-none text-base  font-semibold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                         >
                               Register with ChatSphere
                          </button>
                     </form>

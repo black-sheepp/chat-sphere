@@ -1,8 +1,13 @@
+
 import Logo from "@/components/Logo";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Home = () => {
+     const router = useRouter();
+     const handleExplore = () => {
+          router.push("/Login")
+     }
      return (
           <div>
                <div className="h-[100vh] flex bg-c1">
@@ -20,8 +25,8 @@ const Home = () => {
                               collaborative discussions or plan events with ease.
                          </p>
                          <div className=" mt-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-1/6 h-14 rounded-md cursor-pointer p-[1px]">
-                              <div className="flex items-center justify-center gap-3 text-white font-semibold bg-c1 w-full h-full rounded-md">
-                                   <Link href="/Login" className="text-xl">Explore ChatSphere</Link>
+                              <div onClick={handleExplore} className="flex items-center justify-center gap-3 text-white font-semibold bg-c1 w-full h-full rounded-md">
+                                   <span>Explore ChatSphere</span>
                               </div>
                          </div>
                     </div>
