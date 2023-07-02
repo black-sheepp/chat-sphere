@@ -11,6 +11,7 @@ const Loader = () => {
                     <span></span>
                     <span></span>
                </div>
+               {/* <h1>ChatSphere</h1> */}
           </div>
      );
 };

@@ -14,4 +14,7 @@ export const profileColors = [
     "#4AAC67",
     "#FFE5A5",
     "#CD413C",
+    "#C2035C",
+    "#DACB04",
+    "#0077FF",
 ];

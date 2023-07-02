@@ -64,9 +64,12 @@ const Login = () => {
      };
 
      return isLoading || (!isLoading && currentUser) ? (
-          <Loader />
+          <div className="h-[100vh] flex justify-center items-center bg-c1">
+            <Loader />
+          </div>
      ) : (
           <div className="h-[100vh] flex justify-center items-center bg-c1">
+               {/* <Loader /> */}
                <div className="flex items-center flex-col">
                     <ToastMsg />
                     <Logo />
