@@ -3,7 +3,7 @@ import { useAuth } from "@/context/authContext";
 import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import LeftNav from "@/components/LeftNav";
-
+import Chats from "@/components/Chats";
 
 const Dashboard = () => {
      const router = useRouter();
@@ -19,16 +19,17 @@ const Dashboard = () => {
                <Loader />
           </div>
      ) : (
-       <div className="bg-c1 flex h-[100vh]">
-            {/* <div className="h-[100vh] flex bg-c1">
-                 <button onClick={signOut}>Sign Out</button>
-            </div> */}
+          <div className="bg-c1 flex h-[100vh]">
                <div className="flex w-full shrink-0">
                     <div>
-                      <LeftNav/>
+                         <LeftNav />
                     </div>
                     <div className="flex bg-c2 grow">
-                         <div>Sidebar</div>
+                         <div className="w-[400px] p-5 overflow-auto scrollbar shrink-0 border-r border-white/[0.05]">
+                              <div className="flex flex-col h-full">
+                                   <Chats />
+                              </div>
+                         </div>
                          <div>Chat</div>
                     </div>
                </div>
