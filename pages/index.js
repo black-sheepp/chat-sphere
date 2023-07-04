@@ -1,13 +1,17 @@
 
 import Logo from "@/components/Logo";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Home = () => {
      const router = useRouter();
      const handleExplore = () => {
           router.push("/Login")
      }
+
+     useEffect(()=>{
+          document.title = "Welcome to ChatSphere!"
+     },[])
      return (
           <div>
                <div className="h-[100vh] flex bg-c1">

@@ -21,6 +21,7 @@ const Login = () => {
           if (!isLoading && currentUser) {
                router.push("/Dashboard");
           }
+          document.title = "ChatSphere | Login"
      }, [currentUser, isLoading]);
 
      const handleSubmit = async (e) => {

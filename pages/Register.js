@@ -21,6 +21,7 @@ const Register = () => {
           if (!isLoading && currentUser) {
                router.push("/Dashboard");
           }
+          document.title = "ChatSphere | Register"
      }, [currentUser, isLoading]);
 
      const handleSubmit = async (e) => {

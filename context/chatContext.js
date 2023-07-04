@@ -5,6 +5,8 @@ const chatContext = createContext();
 
 export const ChatContextProvider = ({ children }) => {
     const [users, setUsers] = useState(false);
+    const [chats, setChats] = useState([]);
+    const [selectedChat, setSelectedChat] = useState(null);
     const { currentUser } = useAuth();
 
     const INITIAL_STATE = {
@@ -37,6 +39,8 @@ export const ChatContextProvider = ({ children }) => {
                 setUsers,
                 data: state,
                 dispatch,
+                chats, setChats,
+                selectedChat, setSelectedChat,
             }}
         >
             {children}

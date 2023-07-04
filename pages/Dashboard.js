@@ -10,6 +10,7 @@ const Dashboard = () => {
      const { signOut, currentUser, isLoading } = useAuth();
 
      useEffect(() => {
+          document.title = `ChatSphere`;
           if (!isLoading && !currentUser) {
                router.push("/Login");
           }
