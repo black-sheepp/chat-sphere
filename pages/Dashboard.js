@@ -4,13 +4,16 @@ import { useRouter } from "next/router";
 import Loader from "@/components/Loader";
 import LeftNav from "@/components/LeftNav";
 import Chats from "@/components/Chats";
+import Chat from "@/components/Chat";
+import { useChatContext } from "@/context/chatContext";
 
 const Dashboard = () => {
      const router = useRouter();
      const { signOut, currentUser, isLoading } = useAuth();
+     const { data } = useChatContext();
 
      useEffect(() => {
-          document.title = `ChatSphere`;
+          document.title = `ChatSphere | Dashboard`;
           if (!isLoading && !currentUser) {
                router.push("/Login");
           }
@@ -31,7 +34,7 @@ const Dashboard = () => {
                                    <Chats />
                               </div>
                          </div>
-                         <div>Chat</div>
+                         {data.user && <Chat />}
                     </div>
                </div>
           </div>

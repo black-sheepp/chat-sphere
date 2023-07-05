@@ -18,3 +18,6 @@ export const profileColors = [
     "#DACB04",
     "#0077FF",
 ];
+
+export const DELETED_FOR_ME = "DELETED_FOR_ME";
+export const DELETED_FOR_EVERYONE = "DELETED_FOR_EVERYONE";
