@@ -22,7 +22,7 @@ const Home = () => {
                               Chatsphere is an innovative messaging app that revolutionizes the way people communicate
                               and connect with each other. Designed to provide a seamless and immersive chat experience,
                               Chatsphere combines cutting-edge features with a user-friendly interface to create a
-                              platform that caters to the needs and preferences of modern users. The app's intuitive and
+                              platform that caters to the needs and preferences of modern users. The apps intuitive and
                               visually appealing interface makes navigating through conversations effortless. Chatsphere
                               offers a range of customization options, enabling users to personalize their chat
                               experience with themes, stickers, and emojis. Users can also create group chats for
