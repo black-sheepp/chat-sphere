@@ -1,3 +1,10 @@
+• Developed a feature-rich React.js chat app with Next.js, enabling profile editing, theme customization, and user management (addition and blocking). 
+
+• Implemented advanced messaging features like message deletion for everyone or individual users, and support for emoji and photo attachments. 
+
+• Ensured a seamless user experience with responsive design and robust error handling, while integrating Firebase for enhanced security and data management.
+
+
 Project deployed on Vercel : https://chat-sphere-nextjs-gulp.vercel.app/
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
