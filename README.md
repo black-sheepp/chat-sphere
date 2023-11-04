@@ -44,7 +44,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 <img width="1680" alt="Screenshot 2023-10-09 at 9 24 44 PM" src="https://github.com/black-sheepp/chat-sphere/assets/53144060/58781aa5-cb82-4c3c-9368-722913eb0b77">
 <img width="1680" alt="Screenshot 2023-10-09 at 9 24 59 PM" src="https://github.com/black-sheepp/chat-sphere/assets/53144060/40cc95bd-3a8c-49ee-845a-8cd64eda1f97">
-<img width="1680" alt="Screenshot 2023-10-09 at 9 25 21 PM" src="https://github.com/black-sheepp/chat-sphere/assets/53144060/a4b63834-643e-46cb-b934-b5816a1b12c7">
 <img width="1680" alt="Screenshot 2023-10-09 at 9 26 25 PM" src="https://github.com/black-sheepp/chat-sphere/assets/53144060/462a34c9-1ac0-4c97-a156-f7972bece2ee">
 <img width="1680" alt="Screenshot 2023-10-09 at 9 26 37 PM" src="https://github.com/black-sheepp/chat-sphere/assets/53144060/f640d24b-5cda-4acd-8c58-fc99dce2bbdb">
 <img width="1680" alt="Screenshot 2023-10-09 at 9 26 47 PM" src="https://github.com/black-sheepp/chat-sphere/assets/53144060/f14279e5-2214-43fd-803d-0828e261526b">
